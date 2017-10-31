@@ -4,7 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # .NET Core AppSettings
-appsettings*.json
+*appsettings.json
 
 # User-specific files
 *.suo
