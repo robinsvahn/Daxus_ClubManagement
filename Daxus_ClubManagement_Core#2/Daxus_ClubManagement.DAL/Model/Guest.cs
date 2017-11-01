@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Daxus_ClubManagement.DAL.Model
 {
-    internal class Guest
+    public class Guest
     {
         [Key]
         public int Id { get; set; }
