@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using Daxus_ClubManagement.DAL.Model;
+using Daxus_FootballManagement.DAL.Model;
 
-namespace Daxus_ClubManagement.DAL.Repositories.Interfaces
+namespace Daxus_FootballManagement.DAL.Repositories.Interfaces
 {
     public interface IGuestRepository : IDisposable
     {

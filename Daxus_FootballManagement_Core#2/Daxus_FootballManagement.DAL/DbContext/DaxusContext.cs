@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Daxus_ClubManagement.DAL.DbContext
+namespace Daxus_FootballManagement.DAL.DbContext
 {
     public class DaxusContext : Microsoft.EntityFrameworkCore.DbContext
     {
@@ -13,5 +10,6 @@ namespace Daxus_ClubManagement.DAL.DbContext
         }
 
         public DbSet<Model.Guest> Guest { get; set; }
+        public DbSet<Model.Player> Players { get; set; }
     }
 }

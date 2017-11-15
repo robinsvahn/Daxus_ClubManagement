@@ -1,9 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Collections.Generic;
 
-namespace Daxus_ClubManagement.DAL.Migrations
+namespace Daxus_FootballManagement.DAL.Migrations
 {
     public partial class AddedGuestEntity : Migration
     {
