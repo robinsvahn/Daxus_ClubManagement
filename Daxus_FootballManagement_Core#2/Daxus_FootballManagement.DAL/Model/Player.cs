@@ -16,7 +16,7 @@ namespace Daxus_FootballManagement.DAL.Model
         public DateTime Birthdate { get; set; }
         [Required]
         public DateTime Registered { get; set; }
-        public IEnumerable<Contract> Contracts { get; set; }
-        public IEnumerable<GuestSlot> GuestSlots { get; set; }
+        public ICollection<Contract> Contracts { get; set; }
+        public ICollection<GuestSlot> GuestSlots { get; set; }
     }
 }
