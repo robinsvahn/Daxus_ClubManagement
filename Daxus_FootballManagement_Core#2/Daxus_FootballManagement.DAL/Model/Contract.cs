@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Daxus_FootballManagement.DAL.Model.Interfaces;
 
 namespace Daxus_FootballManagement.DAL.Model
 {
-    public class Contract
+    public class Contract : IEntity
     {
         [Key]
         public int Id { get; set; }

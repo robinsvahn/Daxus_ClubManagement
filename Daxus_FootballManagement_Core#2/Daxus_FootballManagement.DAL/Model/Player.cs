@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Daxus_FootballManagement.DAL.Model.Interfaces;
 
 namespace Daxus_FootballManagement.DAL.Model
 {
-    public class Player
+    public class Player : IEntity
     {
         [Key]
         public int Id { get; set; }

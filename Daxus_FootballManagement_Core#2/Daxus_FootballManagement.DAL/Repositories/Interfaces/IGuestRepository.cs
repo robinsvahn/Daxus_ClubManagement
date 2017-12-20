@@ -9,7 +9,7 @@ namespace Daxus_FootballManagement.DAL.Repositories.Interfaces
         IEnumerable<Guest> GetStudents();
         Guest GetStudentByID(int studentId);
         void InsertStudent(Guest student);
-        void DeleteStudent(int studentID);
+        void DeleteStudent(int studentId);
         void UpdateStudent(Guest student);
         void Save();
     }
