@@ -4,13 +4,7 @@ using Daxus_FootballManagement.DAL.Model;
 
 namespace Daxus_FootballManagement.DAL.Repositories.Interfaces
 {
-    public interface IGuestRepository : IDisposable
+    public interface IGuestRepository : IGenericRepository<Guest>
     {
-        IEnumerable<Guest> GetStudents();
-        Guest GetStudentByID(int studentId);
-        void InsertStudent(Guest student);
-        void DeleteStudent(int studentId);
-        void UpdateStudent(Guest student);
-        void Save();
     }
 }
