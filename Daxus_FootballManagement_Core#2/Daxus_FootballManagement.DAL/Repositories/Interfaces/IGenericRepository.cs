@@ -5,9 +5,9 @@ namespace Daxus_FootballManagement.DAL.Repositories.Interfaces
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {
-        IEnumerable<TEntity> GetAllAsync();
+        Task<IEnumerable<TEntity>> GetAllAsync();
         Task<TEntity> GetByIdAsync(int id);
-        Task CreateAsync(TEntity entity);
+        Task AddAsync(TEntity entity);
         Task UpdateAsync(TEntity entity);
         Task DeleteAsync(TEntity entity);
         Task DeleteByIdAsync(int id);

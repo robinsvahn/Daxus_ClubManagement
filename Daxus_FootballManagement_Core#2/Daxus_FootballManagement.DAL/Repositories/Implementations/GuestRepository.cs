@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Daxus_FootballManagement.DAL.DbContext;
 using Daxus_FootballManagement.DAL.Model;
 using Daxus_FootballManagement.DAL.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Daxus_FootballManagement.DAL.Repositories.Implementations
 {
@@ -18,37 +19,40 @@ namespace Daxus_FootballManagement.DAL.Repositories.Implementations
             _daxusDb = new DaxusContext();
         }
 
-        public IEnumerable<Guest> GetAllAsync()
+        public async Task<IEnumerable<Guest>> GetAllAsync()
         {
-            return _daxusDb.Guests.ToList();
+            return await _daxusDb.Guests.ToListAsync();
         }
 
-        public Task<Guest> GetByIdAsync(int id)
+        public async Task<Guest> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            Guest guest = await _daxusDb.Guests.FindAsync(id);
+
+            return guest;
         }
 
-        public Task CreateAsync(Guest entity)
+        public async Task AddAsync(Guest guest)
         {
-            throw new NotImplementedException();
+            await _daxusDb.Guests.AddAsync(guest);
         }
 
-        public Task UpdateAsync(Guest entity)
+        public async Task UpdateAsync(Guest guest)
         {
-            throw new NotImplementedException();
+            _daxusDb.Guests.Attach(guest);
+            _daxusDb.Entry(guest).State = EntityState.Modified;
         }
 
-        public Task DeleteAsync(Guest entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteByIdAsync(int id)
+        public async Task DeleteAsync(Guest guest)
         {
             throw new NotImplementedException();
         }
 
-        public Task SaveAsync()
+        public async Task DeleteByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task SaveAsync()
         {
             throw new NotImplementedException();
         }
