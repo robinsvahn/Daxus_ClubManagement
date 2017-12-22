@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Daxus_FootballManagement.DAL.DbContext;
 using Daxus_FootballManagement.DAL.Model;
 using Daxus_FootballManagement.DAL.Repositories.Implementations;
+using Daxus_FootballManagement.DAL.Repositories.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,11 +15,11 @@ namespace Daxus_FootballManagement.Controllers
     [Route("api/Guest")]
     public class GuestController : Controller
     {
-        private readonly GuestRepository _guestRepository;
+        private readonly IGuestRepository _guestRepository;
 
-        public GuestController(DaxusContext daxusContext)
+        public GuestController(IGuestRepository guestRepository)
         {
-            _guestRepository = new GuestRepository(daxusContext);
+            _guestRepository = guestRepository;
         }
 
         // GET: api/Guest

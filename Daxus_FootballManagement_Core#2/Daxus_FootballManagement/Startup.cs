@@ -1,4 +1,6 @@
 ﻿using Daxus_FootballManagement.DAL.DbContext;
+using Daxus_FootballManagement.DAL.Repositories.Implementations;
+using Daxus_FootballManagement.DAL.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +25,7 @@ namespace Daxus_FootballManagement
 
             services.AddDbContext<DaxusContext>(opts =>
                 opts.UseSqlServer(Configuration.GetConnectionString("DaxusDatabase")));
+            services.AddScoped<IGuestRepository, GuestRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

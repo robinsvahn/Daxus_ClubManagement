@@ -44,9 +44,6 @@ namespace Daxus_FootballManagement.DAL.Repositories.Implementations
         public async Task UpdateAsync(Guest guest)
         {
             if (guest == null) return;
-            if (await _daxusDb.Guests.FindAsync(guest) == null) return;
-
-            _daxusDb.Entry(guest).CurrentValues.SetValues(guest);
             _daxusDb.Entry(guest).State = EntityState.Modified;
 
             await SaveAsync();
@@ -54,11 +51,10 @@ namespace Daxus_FootballManagement.DAL.Repositories.Implementations
 
         public async Task DeleteAsync(Guest guest)
         {
+            guest = await _daxusDb.Guests.FindAsync(guest.Id);
             if (guest == null) return;
-            if (await _daxusDb.Guests.FindAsync(guest) == null) return;
 
-            _daxusDb.Set<Guest>().Remove(guest);
-            _daxusDb.Entry(guest).State = EntityState.Deleted;
+            _daxusDb.Guests.Remove(guest);
 
             await SaveAsync();
         }
