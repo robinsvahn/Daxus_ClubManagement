@@ -33,28 +33,37 @@ namespace Daxus_FootballManagement.DAL.Repositories.Implementations
 
         public async Task AddAsync(Guest guest)
         {
+            if (guest == null) return;
+
             await _daxusDb.Guests.AddAsync(guest);
+            await SaveAsync();
         }
 
         public async Task UpdateAsync(Guest guest)
         {
-            _daxusDb.Guests.Attach(guest);
+            if (guest == null) return;
+            if (await _daxusDb.Guests.FindAsync(guest) == null) return;
+
+            _daxusDb.Entry(guest).CurrentValues.SetValues(guest);
             _daxusDb.Entry(guest).State = EntityState.Modified;
+
+            await SaveAsync();
         }
 
         public async Task DeleteAsync(Guest guest)
         {
-            throw new NotImplementedException();
-        }
+            if (guest == null) return;
+            if (await _daxusDb.Guests.FindAsync(guest) == null) return;
 
-        public async Task DeleteByIdAsync(int id)
-        {
-            throw new NotImplementedException();
+            _daxusDb.Set<Guest>().Remove(guest);
+            _daxusDb.Entry(guest).State = EntityState.Deleted;
+
+            await SaveAsync();
         }
 
         public async Task SaveAsync()
         {
-            throw new NotImplementedException();
+            await _daxusDb.SaveChangesAsync();
         }
     }
 }

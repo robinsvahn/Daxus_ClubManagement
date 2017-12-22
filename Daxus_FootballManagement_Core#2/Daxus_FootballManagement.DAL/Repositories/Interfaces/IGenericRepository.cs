@@ -10,7 +10,6 @@ namespace Daxus_FootballManagement.DAL.Repositories.Interfaces
         Task AddAsync(TEntity entity);
         Task UpdateAsync(TEntity entity);
         Task DeleteAsync(TEntity entity);
-        Task DeleteByIdAsync(int id);
 
         Task SaveAsync();
     }
