@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Daxus_FootballManagement.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Guest")]
+    [Route("api/[controller]")]
     public class GuestController : Controller
     {
         private readonly IGuestRepository _guestRepository;
