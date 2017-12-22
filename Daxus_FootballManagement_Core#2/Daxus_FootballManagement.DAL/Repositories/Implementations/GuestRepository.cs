@@ -14,9 +14,9 @@ namespace Daxus_FootballManagement.DAL.Repositories.Implementations
     {
         private readonly DaxusContext _daxusDb;
 
-        public GuestRepository()
+        public GuestRepository(DaxusContext daxusContext)
         {
-            _daxusDb = new DaxusContext();
+            _daxusDb = daxusContext;
         }
 
         public async Task<IEnumerable<Guest>> GetAllAsync()
@@ -36,6 +36,8 @@ namespace Daxus_FootballManagement.DAL.Repositories.Implementations
             if (guest == null) return;
 
             await _daxusDb.Guests.AddAsync(guest);
+            _daxusDb.Entry(guest).State = EntityState.Added;
+
             await SaveAsync();
         }
 

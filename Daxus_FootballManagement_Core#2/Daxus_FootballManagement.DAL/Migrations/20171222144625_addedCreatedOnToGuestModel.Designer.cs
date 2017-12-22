@@ -11,9 +11,10 @@ using System;
 namespace Daxus_FootballManagement.DAL.Migrations
 {
     [DbContext(typeof(DaxusContext))]
-    partial class DaxusContextModelSnapshot : ModelSnapshot
+    [Migration("20171222144625_addedCreatedOnToGuestModel")]
+    partial class addedCreatedOnToGuestModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

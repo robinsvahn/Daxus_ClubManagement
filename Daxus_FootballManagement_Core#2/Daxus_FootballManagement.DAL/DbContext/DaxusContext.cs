@@ -4,9 +4,6 @@ namespace Daxus_FootballManagement.DAL.DbContext
 {
     public class DaxusContext : Microsoft.EntityFrameworkCore.DbContext
     {
-        public DaxusContext()
-        { }
-
         public DaxusContext(DbContextOptions<DaxusContext> options)
             : base(options)
         {
