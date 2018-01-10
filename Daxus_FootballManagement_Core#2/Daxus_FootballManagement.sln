@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Daxus_FootballManagement", "Daxus_FootballManagement\Daxus_FootballManagement.csproj", "{2EE8AE0D-0F19-4908-B83D-F7FACDF31301}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Daxus_FootballManagement.DAL", "Daxus_FootballManagement.DAL\Daxus_FootballManagement.DAL.csproj", "{E063A624-68E0-47AF-A760-513208D495EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Daxus_FootballManagement.DAL", "Daxus_FootballManagement.DAL\Daxus_FootballManagement.DAL.csproj", "{E063A624-68E0-47AF-A760-513208D495EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Daxus_FootballManagement.DAL.Tests", "Daxus_FootballManagement.DAL.Tests\Daxus_FootballManagement.DAL.Tests.csproj", "{B9DA73ED-6808-4C36-B69F-F79FCEE9C0D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E063A624-68E0-47AF-A760-513208D495EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E063A624-68E0-47AF-A760-513208D495EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E063A624-68E0-47AF-A760-513208D495EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9DA73ED-6808-4C36-B69F-F79FCEE9C0D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9DA73ED-6808-4C36-B69F-F79FCEE9C0D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9DA73ED-6808-4C36-B69F-F79FCEE9C0D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9DA73ED-6808-4C36-B69F-F79FCEE9C0D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
