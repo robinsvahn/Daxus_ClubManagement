@@ -7,6 +7,7 @@ using Daxus_FootballManagement.DAL.DbContext;
 using Daxus_FootballManagement.DAL.Model;
 using Daxus_FootballManagement.DAL.Repositories.Implementations;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Xunit;
 
 namespace Daxus_FootballManagement.DAL.Tests
@@ -17,9 +18,11 @@ namespace Daxus_FootballManagement.DAL.Tests
         {
             var options = new DbContextOptionsBuilder<DaxusContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                .EnableSensitiveDataLogging(true)
                 .Options;
             var context = new DaxusContext(options);
 
+            #region Add Range
             context.Guests.AddRange(
             new List<Guest>(){
                 new Guest(){Id = 1, Birthdate = new DateTime(1995, 04, 22), CreatedOn = DateTime.Today, Firstname = "Marco", Lastname = "Andersen"},
@@ -32,12 +35,12 @@ namespace Daxus_FootballManagement.DAL.Tests
                 new Guest(){Id = 108, Birthdate = new DateTime(2000, 08, 30), CreatedOn = DateTime.UtcNow, Firstname = "Patrick", Lastname = "Himmel"},
                 new Guest(){Id = 978, Birthdate = new DateTime(1999, 07, 02), CreatedOn = DateTime.Today, Firstname = "Emil", Lastname = "Bauder"},
             });
-
+            #endregion
             context.SaveChanges();
 
             return context;
         }
-    
+
         [Fact]
         public async Task GetAll_WithNothing_ShouldReturnNineGuests()
         {
@@ -49,7 +52,7 @@ namespace Daxus_FootballManagement.DAL.Tests
 
                 //Act
                 var result = await guestRepository.GetAllAsync();
- 
+
                 //Assert
                 Assert.NotNull(result);
                 Assert.NotEmpty(result);
@@ -103,7 +106,7 @@ namespace Daxus_FootballManagement.DAL.Tests
                 //Assert
                 var listOfGuestsAfter = context.Guests.ToList();
 
-                Assert.NotNull(listOfGuestsAfter); 
+                Assert.NotNull(listOfGuestsAfter);
                 Assert.NotEmpty(listOfGuestsAfter);
                 Assert.IsType<List<Guest>>(listOfGuestsAfter);
 
@@ -123,22 +126,53 @@ namespace Daxus_FootballManagement.DAL.Tests
             {
                 //Arrange
                 var guestRepository = new GuestRepository(context);
-                var guestBefore = await guestRepository.GetByIdAsync(idToTest); //Can't use context, not allowed to track two objects with same ID at the same time. 
-                var nameBefore = guestBefore.Firstname;
+                var guestBefore1 = context.Guests.First(x => x.Id == idToTest);
+                var nameBefore = guestBefore1.Firstname;
 
-                var guestForTest = await guestRepository.GetByIdAsync(idToTest); //Can't use context, not allowed to track two objects with same ID at the same time. 
-                guestForTest.Firstname = firstname;
+                guestBefore1.Firstname = firstname;
 
                 //Act
-                await guestRepository.UpdateAsync(guestForTest);
+                await guestRepository.UpdateAsync(guestBefore1);
 
                 //Assert
-                var guestAfter = await guestRepository.GetByIdAsync(idToTest); //Can't use context, not allowed to track two objects with same ID at the same time. 
+                var guestAfter1 = context.Guests.First(x => x.Id == idToTest);
+
+                Assert.NotNull(guestAfter1);
+                Assert.IsType<Guest>(guestAfter1);
+                Assert.NotEqual(nameBefore, guestAfter1.Firstname);
+                Assert.Equal(guestAfter1.Firstname, firstname);
+            }
+        }
+
+        [Fact]
+        public async Task UpdateAsync_WithValidCopyWithNewName_ShouldUpdateGuestWithNewName()
+        {
+            using (var context = GetContextWithData())
+            {
+                //Arrange
+                var guestRepository = new GuestRepository(context);
+
+                var updatedGuest = new Guest
+                {
+                    Id = 66,
+                    Birthdate = new DateTime(1989, 03, 06),
+                    CreatedOn = DateTime.UtcNow,
+                    Firstname = "Steffan",
+                    Lastname = "Haas"
+                };
+
+                var firstnameBefore = context.Guests.First(x => x.Id == updatedGuest.Id).Firstname;
+
+                //Act
+                await guestRepository.UpdateAsync(updatedGuest);
+
+                //Assert
+                var guestAfter = context.Guests.First(x => x.Id == updatedGuest.Id);
 
                 Assert.NotNull(guestAfter);
                 Assert.IsType<Guest>(guestAfter);
-                Assert.NotEqual(nameBefore, guestAfter.Firstname);
-                Assert.Equal(guestAfter.Firstname, firstname);
+                Assert.NotEqual(firstnameBefore, guestAfter.Firstname);
+                Assert.Equal(guestAfter.Firstname, updatedGuest.Firstname);
             }
         }
 
@@ -157,7 +191,7 @@ namespace Daxus_FootballManagement.DAL.Tests
 
                 //Act
                 await guestRepository.DeleteAsync(guestToDelete);
-                
+
                 //Assert
                 var listOfGuestsAfter = context.Guests.ToList();
                 Assert.NotNull(listOfGuestsAfter);
