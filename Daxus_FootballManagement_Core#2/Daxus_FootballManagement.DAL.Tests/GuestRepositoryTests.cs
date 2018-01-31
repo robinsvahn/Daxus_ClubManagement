@@ -52,7 +52,7 @@ namespace Daxus_FootballManagement.DAL.Tests
 
                 //Act
                 var result = await guestRepository.GetAllAsync();
-
+                
                 //Assert
                 Assert.NotNull(result);
                 Assert.NotEmpty(result);
@@ -80,9 +80,6 @@ namespace Daxus_FootballManagement.DAL.Tests
             }
         }
 
-        /// <summary>
-        /// Tests if users are added correctly
-        /// </summary>
         [Fact]
         public async Task AddAsync_WithValidUser_ShouldAddUserToLastPositionInList()
         {
@@ -120,7 +117,7 @@ namespace Daxus_FootballManagement.DAL.Tests
         [InlineData(1, "Ruben")]
         [InlineData(2, "Bruno")]
         [InlineData(3, "Jim")]
-        public async Task UpdateAsync_WithValidFirstnames(int idToTest, string firstname)
+        public async Task UpdateAsync_WithValidFirstnames_ShouldUpdateUsers(int idToTest, string firstname)
         {
             using (var context = GetContextWithData())
             {
