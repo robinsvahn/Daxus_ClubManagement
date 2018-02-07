@@ -20,6 +20,5 @@ namespace Daxus_FootballManagement.DAL.Model
         [Required]
         public DateTime CreatedOn { get; set; }
         public DateTime Birthdate { get; set; }
-        public string FakeChange { get; set; }
     }
 }
