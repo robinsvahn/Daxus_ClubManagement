@@ -11,8 +11,8 @@ using System;
 namespace Daxus_FootballManagement.DAL.Migrations
 {
     [DbContext(typeof(DaxusContext))]
-    [Migration("20171222145121_triedToFixProblem")]
-    partial class triedToFixProblem
+    [Migration("20180207165251_initialNewDb")]
+    partial class initialNewDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,6 +53,8 @@ namespace Daxus_FootballManagement.DAL.Migrations
                     b.Property<DateTime>("Birthdate");
 
                     b.Property<DateTime>("CreatedOn");
+
+                    b.Property<string>("FakeChange");
 
                     b.Property<string>("Firstname")
                         .IsRequired();

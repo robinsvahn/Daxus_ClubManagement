@@ -53,6 +53,8 @@ namespace Daxus_FootballManagement.DAL.Migrations
 
                     b.Property<DateTime>("CreatedOn");
 
+                    b.Property<string>("FakeChange");
+
                     b.Property<string>("Firstname")
                         .IsRequired();
 

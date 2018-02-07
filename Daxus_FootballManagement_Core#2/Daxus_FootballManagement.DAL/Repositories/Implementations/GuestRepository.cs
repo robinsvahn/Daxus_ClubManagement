@@ -44,7 +44,15 @@ namespace Daxus_FootballManagement.DAL.Repositories.Implementations
         public async Task UpdateAsync(Guest guest)
         {
             if (guest == null) return;
-            _daxusDb.Entry(guest).State = EntityState.Modified;
+            var guestInList = await _daxusDb.Guests.FindAsync(guest.Id);
+            if (guestInList == null) return;
+
+            guestInList.Firstname = guest.Firstname;
+            guestInList.Birthdate = guest.Birthdate;
+            guestInList.CreatedOn = guest.CreatedOn;
+            guestInList.Lastname = guest.Lastname;
+
+            _daxusDb.Entry(guestInList).State = EntityState.Modified;
 
             await SaveAsync();
         }
