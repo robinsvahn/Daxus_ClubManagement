@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Daxus_FootballManagement.Controllers
 {
     [Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("api/Guest/")]
     public class GuestController : Controller
     {
         private readonly IGuestRepository _guestRepository;
@@ -31,7 +31,7 @@ namespace Daxus_FootballManagement.Controllers
         }
 
         // GET: api/Guest/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             var guest = await _guestRepository.GetByIdAsync(id);

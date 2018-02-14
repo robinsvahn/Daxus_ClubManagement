@@ -6,25 +6,25 @@ using Microsoft.AspNetCore.Mvc;
 namespace Daxus_FootballManagement.Controllers
 {
     [Produces("application/json")]
-    [Route("api/[controller]")]
-    public class TeamsController : Controller
+    [Route("api/Team/")]
+    public class TeamController : Controller
     {
         private readonly ITeamRepository _teamsRepository;
 
-        public TeamsController(ITeamRepository teamsRepository)
+        public TeamController(ITeamRepository teamsRepository)
         {
             _teamsRepository = teamsRepository;
         }
 
-        // GET: api/Guest
+        // GET: api/Team
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             return Ok(await _teamsRepository.GetAllAsync());
         }
 
-        // GET: api/Guest/5
-        [HttpGet("{id}", Name = "Get")]
+        // GET: api/Team/5
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             var team = await _teamsRepository.GetByIdAsync(id);
@@ -33,7 +33,7 @@ namespace Daxus_FootballManagement.Controllers
             return Ok(await _teamsRepository.GetByIdAsync(id));
         }
 
-        // POST: api/Guest
+        // POST: api/Team
         [HttpPost]
         public async Task<IActionResult> Post(Team team)
         {
@@ -42,7 +42,7 @@ namespace Daxus_FootballManagement.Controllers
             return Ok($"Team {team.Name} {team.Name} was saved succesfully");
         }
 
-        // PUT: api/Guest/5
+        // PUT: api/Team/5
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, Team team)
         {
@@ -53,7 +53,7 @@ namespace Daxus_FootballManagement.Controllers
             return Ok($"Team {team.Name} {team.Name} was updated succesfully");
         }
 
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/Team/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
