@@ -18,7 +18,6 @@ namespace Daxus_FootballManagement.DAL.Model
         [Required]
         public string Lastname { get; set; }
         [Required]
-        public DateTime CreatedOn { get; set; }
-        public DateTime Birthdate { get; set; }
+        public DateTime CreatedOn { get; }
     }
 }

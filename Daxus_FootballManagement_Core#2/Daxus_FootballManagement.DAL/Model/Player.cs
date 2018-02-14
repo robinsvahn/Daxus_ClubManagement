@@ -7,6 +7,11 @@ namespace Daxus_FootballManagement.DAL.Model
 {
     public class Player : IEntity
     {
+        public Player()
+        {
+            CreatedOn = DateTime.UtcNow;
+        }
+
         [Key]
         public int Id { get; set; }
         [Required]
@@ -16,7 +21,8 @@ namespace Daxus_FootballManagement.DAL.Model
         [Required]
         public DateTime Birthdate { get; set; }
         [Required]
-        public DateTime Registered { get; set; }
+        public DateTime CreatedOn { get; }
+
         public ICollection<Contract> Contracts { get; set; }
         public ICollection<GuestSlot> GuestSlots { get; set; }
     }

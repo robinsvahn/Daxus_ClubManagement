@@ -7,5 +7,6 @@ namespace Daxus_FootballManagement.DAL.Model.Interfaces
     public interface IEntity
     {
         int Id { get; set; }
+        DateTime CreatedOn { get; }
     }
 }
