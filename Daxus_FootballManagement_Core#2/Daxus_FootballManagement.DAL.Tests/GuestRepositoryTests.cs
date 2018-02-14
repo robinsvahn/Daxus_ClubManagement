@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 using Daxus_FootballManagement.DAL.DbContext;
 using Daxus_FootballManagement.DAL.Model;
 using Daxus_FootballManagement.DAL.Repositories.Implementations;
+using Daxus_FootballManagement.DAL.Tests.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Xunit;
 
 namespace Daxus_FootballManagement.DAL.Tests
 {
-    public class GuestRepositoryTests
+    public class GuestRepositoryTests : IGenericRepositoryTest
     {
         private DaxusContext GetContextWithData()
         {
@@ -42,7 +43,7 @@ namespace Daxus_FootballManagement.DAL.Tests
         }
 
         [Fact]
-        public async Task GetAll_WithNothing_ShouldReturnNineGuests()
+        public async Task GetAll_WithNothing_ShouldReturnCorrectNumberOfEntities()
         {
             using (var context = GetContextWithData())
             {
@@ -64,7 +65,7 @@ namespace Daxus_FootballManagement.DAL.Tests
         [InlineData(1)]
         [InlineData(2)]
         [InlineData(3)]
-        public async Task GetByIdAysnc_WithValidIds_ShouldReturnValidGuests(int id)
+        public async Task GetByIdAysnc_WithValidIds_ShouldReturnValidEntities(int id)
         {
             using (var context = GetContextWithData())
             {
@@ -81,7 +82,7 @@ namespace Daxus_FootballManagement.DAL.Tests
         }
 
         [Fact]
-        public async Task AddAsync_WithValidUser_ShouldAddUserToLastPositionInList()
+        public async Task AddAsync_WithValidData_ShouldAddEntityToLastPositionInList()
         {
             using (var context = GetContextWithData())
             {
@@ -115,7 +116,7 @@ namespace Daxus_FootballManagement.DAL.Tests
         [InlineData(1, "Ruben")]
         [InlineData(2, "Bruno")]
         [InlineData(3, "Jim")]
-        public async Task UpdateAsync_WithValidFirstnames_ShouldUpdateUsers(int idToTest, string firstname)
+        public async Task UpdateAsync_WithValidPropertyData_ShouldUpdateEntities(int idToTest, string firstname)
         {
             using (var context = GetContextWithData())
             {
@@ -140,7 +141,7 @@ namespace Daxus_FootballManagement.DAL.Tests
         }
 
         [Fact]
-        public async Task UpdateAsync_WithValidCopyWithNewName_ShouldUpdateGuestWithNewName()
+        public async Task UpdateAsync_WithValidEntityCopyButChangedProperty_ShouldUpdateEntitytWithNewPropertyValue()
         {
             using (var context = GetContextWithData())
             {
