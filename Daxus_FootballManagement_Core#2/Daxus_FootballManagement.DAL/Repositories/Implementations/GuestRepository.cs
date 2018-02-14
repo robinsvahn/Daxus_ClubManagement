@@ -12,29 +12,29 @@ namespace Daxus_FootballManagement.DAL.Repositories.Implementations
 {
     public class GuestRepository : IGuestRepository
     {
-        private readonly DaxusContext _daxusDb;
+        private readonly DaxusContext _daxusContext;
 
         public GuestRepository(DaxusContext daxusContext)
         {
-            _daxusDb = daxusContext;
+            _daxusContext = daxusContext;
         }
 
         public async Task<IEnumerable<Guest>> GetAllAsync()
         {
-            return await _daxusDb.Guests.ToListAsync();
+            return await _daxusContext.Guests.ToListAsync();
         }
 
         public async Task<Guest> GetByIdAsync(int id)
         {
-            return await _daxusDb.Guests.FindAsync(id);
+            return await _daxusContext.Guests.FindAsync(id);
         }
 
         public async Task AddAsync(Guest guest)
         {
             if (guest == null) return;
 
-            await _daxusDb.Guests.AddAsync(guest);
-            _daxusDb.Entry(guest).State = EntityState.Added;
+            await _daxusContext.Guests.AddAsync(guest);
+            _daxusContext.Entry(guest).State = EntityState.Added;
 
             await SaveAsync();
         }
@@ -42,30 +42,30 @@ namespace Daxus_FootballManagement.DAL.Repositories.Implementations
         public async Task UpdateAsync(Guest guest)
         {
             if (guest == null) return;
-            var guestInList = await _daxusDb.Guests.FindAsync(guest.Id);
+            var guestInList = await _daxusContext.Guests.FindAsync(guest.Id);
             if (guestInList == null) return;
 
             guestInList.Firstname = guest.Firstname;
             guestInList.Lastname = guest.Lastname;
 
-            _daxusDb.Entry(guestInList).State = EntityState.Modified;
+            _daxusContext.Entry(guestInList).State = EntityState.Modified;
 
             await SaveAsync();
         }
 
         public async Task DeleteAsync(Guest guest)
         {
-            guest = await _daxusDb.Guests.FindAsync(guest.Id);
+            guest = await _daxusContext.Guests.FindAsync(guest.Id);
             if (guest == null) return;
 
-            _daxusDb.Guests.Remove(guest);
+            _daxusContext.Guests.Remove(guest);
 
             await SaveAsync();
         }
 
         public async Task SaveAsync()
         {
-            await _daxusDb.SaveChangesAsync();
+            await _daxusContext.SaveChangesAsync();
         }
     }
 }
