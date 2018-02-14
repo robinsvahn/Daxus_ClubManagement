@@ -26,6 +26,7 @@ namespace Daxus_FootballManagement
             services.AddDbContext<DaxusContext>(opts =>
                 opts.UseSqlServer(Configuration.GetConnectionString("DaxusDatabase")));
             services.AddScoped<IGuestRepository, GuestRepository>();
+            services.AddScoped<ITeamRepository, TeamRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
