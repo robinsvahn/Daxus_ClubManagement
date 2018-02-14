@@ -6,6 +6,7 @@ using Daxus_FootballManagement.DAL.DbContext;
 using Daxus_FootballManagement.DAL.Model;
 using Daxus_FootballManagement.DAL.Repositories.Implementations;
 using Daxus_FootballManagement.DAL.Repositories.Interfaces;
+using Daxus_FootballManagement.DAL.Repositories.Interfaces.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

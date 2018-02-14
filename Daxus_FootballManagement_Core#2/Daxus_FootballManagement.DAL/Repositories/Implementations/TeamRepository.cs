@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Daxus_FootballManagement.DAL.DbContext;
 using Daxus_FootballManagement.DAL.Model;
-using Daxus_FootballManagement.DAL.Repositories.Interfaces.Generic;
+using Daxus_FootballManagement.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Daxus_FootballManagement.DAL.Repositories.Implementations
