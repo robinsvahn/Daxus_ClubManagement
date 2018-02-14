@@ -26,9 +26,7 @@ namespace Daxus_FootballManagement.DAL.Repositories.Implementations
 
         public async Task<Guest> GetByIdAsync(int id)
         {
-            Guest guest = await _daxusDb.Guests.FindAsync(id);
-
-            return guest;
+            return await _daxusDb.Guests.FindAsync(id);
         }
 
         public async Task AddAsync(Guest guest)
@@ -48,8 +46,6 @@ namespace Daxus_FootballManagement.DAL.Repositories.Implementations
             if (guestInList == null) return;
 
             guestInList.Firstname = guest.Firstname;
-            guestInList.Birthdate = guest.Birthdate;
-            guestInList.CreatedOn = guest.CreatedOn;
             guestInList.Lastname = guest.Lastname;
 
             _daxusDb.Entry(guestInList).State = EntityState.Modified;

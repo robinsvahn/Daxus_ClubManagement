@@ -17,6 +17,10 @@ namespace Daxus_FootballManagement.DAL.Model
         [Required]
         public string Name { get; set; }
         [Required]
+        public string Country { get; set; }
+        [Required]
+        public int Tier { get; set; }
+        [Required]
         public DateTime CreatedOn { get; }
 
         public ICollection<Contract> Contracts { get; set; }

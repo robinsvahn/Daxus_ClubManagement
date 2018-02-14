@@ -11,5 +11,6 @@ namespace Daxus_FootballManagement.DAL.DbContext
 
         public DbSet<Model.Guest> Guests { get; set; }
         public DbSet<Model.Player> Players { get; set; }
+        public DbSet<Model.Team> Teams { get; set; }
     }
 }
