@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Daxus_FootballManagement.DAL.DbContext;
 using Daxus_FootballManagement.DAL.Model;
 using Daxus_FootballManagement.DAL.Repositories.Interfaces;
@@ -13,10 +14,18 @@ namespace Daxus_FootballManagement.DAL.Repositories.Implementations
     public class GuestRepository : IGuestRepository
     {
         private readonly DaxusContext _daxusContext;
+        private readonly IMapper _iMapper;
 
         public GuestRepository(DaxusContext daxusContext)
         {
             _daxusContext = daxusContext;
+
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Guest, Guest>();
+            });
+
+            _iMapper = config.CreateMapper();
         }
 
         public async Task<IEnumerable<Guest>> GetAllAsync()
@@ -44,9 +53,8 @@ namespace Daxus_FootballManagement.DAL.Repositories.Implementations
             if (guest == null) return;
             var guestInList = await _daxusContext.Guests.FindAsync(guest.Id);
             if (guestInList == null) return;
-
-            guestInList.Firstname = guest.Firstname;
-            guestInList.Lastname = guest.Lastname;
+            
+            guestInList = _iMapper.Map(guest, guestInList);
 
             _daxusContext.Entry(guestInList).State = EntityState.Modified;
 
