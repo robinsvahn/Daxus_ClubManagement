@@ -22,6 +22,11 @@ namespace Daxus_FootballManagement
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AnyOrigin",
+                    builder => builder.AllowAnyOrigin());
+            });
 
             services.AddDbContext<DaxusContext>(opts =>
                 opts.UseSqlServer(Configuration.GetConnectionString("DaxusDatabase")));

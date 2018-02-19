@@ -1,12 +1,14 @@
 ﻿using System.Threading.Tasks;
 using Daxus_FootballManagement.DAL.Model;
 using Daxus_FootballManagement.DAL.Repositories.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Daxus_FootballManagement.Controllers
 {
     [Produces("application/json")]
     [Route("api/Team/")]
+    [EnableCors("AnyOrigin")]
     public class TeamController : Controller
     {
         private readonly ITeamRepository _teamsRepository;
